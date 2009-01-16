@@ -1,0 +1,10 @@
+.. _apps-urls:
+
+
+Urls
+====
+
+
++ Placed in APP/urls (.py or a directory)
++ Should have a name attribute so they are reversible; APP_MODEL_VIEW,
+  for example blog_post_detail or blog_post_list.

@@ -1,0 +1,9 @@
+.. _projects-settings:
+
+Settings
+========
+
+
++ Placed in PROJECT/settings.py
++ If you are using an import mechanism, please use `from
+  local_settings import *` at the bottom of your settings.py file

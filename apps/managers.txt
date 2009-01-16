@@ -1,0 +1,6 @@
+.. _apps-managers:
+
+Managers
+========
+
++ Placed in APP/managers.py

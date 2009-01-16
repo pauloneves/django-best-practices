@@ -1,0 +1,6 @@
+.. _apps-forms:
+
+Forms
+=====
+
++ Placed in APP/forms.py

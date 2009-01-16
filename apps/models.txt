@@ -1,0 +1,9 @@
+.. _apps-models:
+
+Models
+======
+
++ Placed in APP/models (.py or a directory)
++ Follow `Django's model conventions
+  <http://docs.djangoproject.com/en/dev/internals/contributing/#model-
+  style>`__

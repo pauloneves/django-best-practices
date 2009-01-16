@@ -1,0 +1,12 @@
+.. _apps-index:
+
+Django Reusable App Project Documentation
+==========================================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
+   *
