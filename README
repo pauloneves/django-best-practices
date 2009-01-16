@@ -1,7 +1,6 @@
 
 This project is meant to hold documentation on how to build and maintain
-Django reusable apps. This document is going to serve (for now) as the place
-of my current ideas.
+Django reusable apps.
 
 One item on the Pinax TODO/wish list is to have good documentation about all
 aspects of a Django resuable app. This includes, but not limited to:
@@ -16,7 +15,7 @@ documentation itself. This documentation should cover:
  * admin
  * internationalization
  * models
- * feeds (if applicable)
+ * feeds 
  * templates
  * templatetags
  * documentation
