@@ -5,6 +5,7 @@ Django reusable app documentation
 
 Contents:
 
+   * :ref:`Coding Conventions <coding-conventions>`
    * :ref:`Projects Index <projects-index>`
    * :ref:`Apps Index <apps-index>`
 
