@@ -7,10 +7,8 @@ Template Tags
 + Placed in APP/templatetags/APP_tags.py
 
 
-
 Proposed template tag syntax
-============================
-
+++++++++++++++++++++++++++++
 
 + as (Context Var): This is used to set a variable in the context of
   the page

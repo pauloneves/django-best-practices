@@ -3,11 +3,13 @@
 Django reusable app documentation
 =================================
 
-Contents:
+.. toctree::
+  :maxdepth: 2
 
-   * :ref:`Coding Conventions <coding-conventions>`
-   * :ref:`Projects Index <projects-index>`
-   * :ref:`Apps Index <apps-index>`
+  coding_conventions
+  apps/index
+  projects/index
+
 
 Indices and tables
 ==================
