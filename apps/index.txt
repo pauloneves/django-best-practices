@@ -1,6 +1,6 @@
 .. _apps-index:
 
-Django Reusable App Project Documentation
+Django Reusable App Conventions
 ==========================================
 
 Contents:

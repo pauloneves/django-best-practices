@@ -14,7 +14,7 @@ Suggested Project layout
 
 .. sourcecode:: python
 
-     `example.com/
+     example.com/
         settings.py
         urls.py
         local_apps/
@@ -45,4 +45,3 @@ Suggested Project layout
             example/
             app1/
             app2/
-    `
