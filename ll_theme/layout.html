@@ -221,5 +221,82 @@
     </div>
 {%- endblock %}
 </div></div>
+    <div class="container-noJS" id="jump">
+        <div class="column span-6 append-1">
+            <h3 class="hidden">Existing Clients</h3>
+            <div id="clients-popup">
+                <ul class="clean">
+                    <li><a class="icon freshbooks" href="https://lincolnloop.freshbooks.com">Billing</a></li>
+
+                    <li><a class="icon basecamp" href="https://lincolnloop.grouphub.com">Basecamp</a></li>
+                    <li><a class="icon hosting" href="https://www.websitesettings.com">Email/Hosting Support</a> or 877.934.0408</li>
+                </ul>
+            </div>
+        </div>
+        <div class="column prepend-1 span-7">
+            <h3 class="hidden">Contact</h3>
+
+            <div id="contact-popup">
+                <p>
+                     <strong>Interested in working with us?</strong><br />
+                     Fill out the form below or contact us at:
+                </p>
+                <p style="float:right">
+                    PO Box 774441<br />
+                    Steamboat Springs, CO <br />
+
+                    80477
+                </p>
+                <p>
+                    ph: 970.879.8810<br />
+                    fx: &nbsp;970.367.8596<br />
+                    <a href="mailto:info@lincolnloop.com">info@lincolnloop.com</a><br />
+                </p>
+
+                
+                <form action="/contact/" method="post" id="contact-form">
+                    <fieldset><label for="id_contact-name">
+                        Name<br/>
+                        <span class="required">required</span>
+                    </label>
+                    <input type="text" name="contact-name" id="id_contact-name" /><br/>
+
+                    <label for="id_contact-phone">Phone</label>
+
+                    <input type="text" name="contact-phone" id="id_contact-phone" /><br/>
+
+                    <label for="id_contact-email">
+                        Email<br/>
+                        <span class="required">required</span>
+                    </label>
+                    <input type="text" name="contact-email" id="id_contact-email" /><br/>
+
+                    <label for="id_contact-request">Request</label>
+
+                    <select name="contact-request" id="id_contact-request">
+<option value="n/a"></option>
+<option value="RFQ">I&#39;d like to get a quote</option>
+<option value="question">I have a question</option>
+<option value="hi">I just wanted to say hi</option>
+</select><br/>
+
+                    <div id="budget"><label for="id_contact-budget">Budget</label>
+                    <input type="text" name="contact-budget" id="id_contact-budget" />
+
+                    </div>
+
+                    <label for="id_contact-note">
+                        Note<br/>
+                        <span class="required">required</span>
+                    </label>
+                    <textarea id="id_contact-note" rows="10" cols="40" name="contact-note"></textarea><br/>
+</fieldset>
+
+                    <p><input type="submit" class="submit" value="Submit" /></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
   </body>
 </html>
