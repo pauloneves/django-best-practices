@@ -3,7 +3,22 @@
 Settings
 ========
 
+Placed in ``[PROJECT]/settings.py``
 
-+ Placed in PROJECT/settings.py
-+ If you are using an import mechanism, please use `from
-  local_settings import *` at the bottom of your settings.py file
+Use relative paths for your directories
+
+.. sourcecode:: python
+
+    import os
+    DIRNAME = os.path.dirname(__file__)
+
+    MEDIA_URL = os.path.join(DIRNAME, 'static')
+    
+Use a ``local_settings.py`` file for machine specific settings and import it at the end of the file.
+
+.. sourcecode:: python
+
+    try:
+        from local_settings import *
+    except ImportError:   
+        pass
