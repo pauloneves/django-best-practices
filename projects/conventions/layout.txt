@@ -1,0 +1,38 @@
+.. _project-layout:
+
+Suggested Project layout
+========================
+
+.. sourcecode:: python
+
+     example.com/
+        settings.py
+        urls.py
+        local_apps/
+            custom apps written for this project (Preferably Reusable; Probably on your PYTHONPATH)
+        external_apps/
+             External reusable apps you are using on this project
+             Note: These apps can also live anywhere on your PYTHONPATH
+        projects/
+            dev_example/
+            production_example/
+            django96_example/
+                manage.py, settings, urls, etc
+         docs/
+            This will hold the documentation for your project
+        static/
+            -In production this will be the root of your MEDIA_URL
+            css/
+            js/
+            images/
+        tests/
+            - Project level tests (Each app should also have tests)
+        uploads/
+            - content imgs, etc
+        templates/
+            - This area is used to override templates from your reusable apps
+            flatpages/
+            comments/
+            example/
+            app1/
+            app2/

@@ -41,7 +41,7 @@ source_suffix = '.txt'
 master_doc = 'index'
 
 # General information about the project.
-project = u'django-reusable-app-docs'
+project = u'Django Best Practices'
 copyright = u'2008, Brian Rosner'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -101,7 +101,7 @@ html_theme_path = ["."]
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-#html_title = None
+html_title = "Django Best Practices"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None

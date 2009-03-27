@@ -1,0 +1,12 @@
+.. _projects-conventions:
+
+Django Project Conventions
+==========================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
+   *

@@ -1,49 +1,24 @@
 .. _index:
 
-.. index::
-   pair: What are; Reusable Apps
-   triple: James Bennett; Djangocon Talk; Reusable Apps
-
-What is a reusable app?
-=======================
-
-A reusable Django app, is an app that is easily plugged into a
-project, providing a very specific piece of functionality. They should
-be focused and follow the Unix philosophy of "Do one thing and do it
-well." Please refer to James Bennett's `Djangocon talk
-<http://www.youtube.com/watch?v=A-S0tqpPga4>`__ on the subject for
-more info.
-
-.. index:: Coding Conventions, PEP8
-   pair: Python; Coding Conventions
-   pair: Django; Coding Conventions
+Django Best Practices
+=====================
 
 
-Coding Conventions
-==================
+This is a living document of best practices in developing and deploying with the `Django Web framework <http://www.djangoproject.com>`__. It is a fork of the great `django-reusable-app-docs project`_ started by `Brian Rosner <http://oebfare.com>`__ and `Eric Holscher <http://ericholscher.com>`_ regarding best practices for writing and maintaining reusable Django apps.
 
-+ All code should follow `PEP8
-  <http://www.python.org/dev/peps/pep-0008/>`__ as closely as
-  reasonable.
-+ All code should preferably follow Django's `coding conventions
-  <http://docs.djangoproject.com/en/dev/internals/contributing/#coding-
-  style>`__ as well.
+.. _django-reusable-app-docs project: http://github.com/ericholscher/django-reusable-app-docs/tree/master
 
+.. note:: The source code for this documentation lives on GitHub as `django-best-practices`_ and can be built in a number of formats using `Sphinx <http://sphinx.pocoo.org>`__
 
-Django Conventions
+.. _django-best-practices: http://github.com/lincolnloop/django-best-practices/tree/master
+
+Table of Contents
 =================================
 
 .. toctree::
-  :maxdepth: 2
+  :maxdepth: 3
+  :glob:
 
-  distribution
+  *
   apps/index
   projects/index
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

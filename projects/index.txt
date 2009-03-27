@@ -1,7 +1,7 @@
 .. _projects-index:
 
-Django Project Conventions
-==========================================
+Django Projects
+===============
 
 Contents:
 
@@ -10,3 +10,4 @@ Contents:
    :glob:
 
    *
+   conventions/index

@@ -1,7 +1,7 @@
 .. _apps-index:
 
-Django Reusable App Conventions
-==========================================
+Django Applications
+===================
 
 Contents:
 
@@ -10,3 +10,4 @@ Contents:
    :glob:
 
    *
+   conventions/index
