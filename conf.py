@@ -91,9 +91,6 @@ pygments_style = 'sphinx'
 # Options for HTML output
 # -----------------------
 
-html_theme = "ll_theme"
-html_theme_path = ["."]
-
 # The style sheet to use for HTML and HTML Help pages. A file of that name
 # must exist either in Sphinx' static/ path, or in one of the custom paths
 # given in html_static_path.
@@ -191,3 +188,10 @@ latex_documents = [
 
 # If false, no module index is generated.
 #latex_use_modindex = True
+
+# use local_conf.py file for configuration tweaks
+sys.path.append(os.path.dirname(__file__))
+try:
+    from local_conf import *
+except ImportError:
+    pass
