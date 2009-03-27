@@ -1,6 +1,6 @@
 .. _code-index:
 
-.. index:: Coding Conventions, PEP8
+.. index:: Coding Conventions, PEP 8, PEP 20
    pair: Python; Coding Conventions
    pair: Django; Coding Conventions
 
@@ -8,9 +8,11 @@
 Coding Style
 ============
 
-+ All code should follow `PEP8
+In general, code should be clean, concise and readable. `The Zen of Python (PEP 20) <http://www.python.org/dev/peps/pep-0020/>`_ is a great introduction to best coding practices for Python.
+
++ Follow the `Style Guide for Python Code (PEP 8)
   <http://www.python.org/dev/peps/pep-0008/>`__ as closely as
   reasonable.
-+ All code should preferably follow Django's `coding conventions
++ Follow the `Django coding style
   <http://docs.djangoproject.com/en/dev/internals/contributing/#coding-
-  style>`__ as well.
+  style>`__.
