@@ -4,7 +4,9 @@ Django Best Practices
 =====================
 
 
-This is a living document of best practices in developing and deploying with the `Django Web framework <http://www.djangoproject.com>`__. It is a fork of the great `django-reusable-app-docs project`_ started by `Brian Rosner <http://oebfare.com>`__ and `Eric Holscher <http://ericholscher.com>`_ regarding best practices for writing and maintaining reusable Django apps.
+This is a living document of best practices in developing and deploying with the `Django Web framework <http://www.djangoproject.com>`__. These should not be seen as the *right* way or the *only* way to work with Django, but instead best practices we've honed after years of working with the framework.
+
+It is a fork of the great `django-reusable-app-docs project`_ started by `Brian Rosner <http://oebfare.com>`__ and `Eric Holscher <http://ericholscher.com>`_ regarding best practices for writing and maintaining reusable Django apps.
 
 .. _django-reusable-app-docs project: http://github.com/ericholscher/django-reusable-app-docs/tree/master
 

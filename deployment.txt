@@ -1,0 +1,23 @@
+.. _deployment-index:
+
+.. index:: Apache, mod_wsgi, Nginx, PostgreSQL, Linux
+
+
+Deployment and Servers
+======================
+
+.. note:: Deployment arcitectures vary widely depending on the needs and traffic of the site. The setup described below works best for us in most instances.
+
+We serve Django on Linux with a PostgreSQL database backend via Apache and `mod_wsgi <http://www.modwsgi.org>`__ from behind an `Nginx <http://nginx.net>`__ instance acting as a frontend proxy.
+
+Nginx
+-----
+
+`Nginx <http://nginx.net>`__ makes for a great frontend server due to its speed, stability and low resource footprint. The typical Nginx configuration for a site looks like this:
+
+.. literalinclude:: examples/nginx.conf
+    :language: nginx
+    
+.. rubric:: What Does it Do?
+
+The first block tells Nginx where to find the server hosting our Django site. The second block redirects any request coming in on ``www.domain.com`` to ``domain.com`` so each resource has only one URL that will access it. The final block is the one that does all the work. It tells Nginx to check if a file matching the request exists in ``/var/www/domain.com``. If it does, it serves that file, if it doesn't, it proxies the request to the Django site.
