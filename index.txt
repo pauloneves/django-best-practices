@@ -24,3 +24,4 @@ Table of Contents
   *
   apps/index
   projects/index
+  deployment/index

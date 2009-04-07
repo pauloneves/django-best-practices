@@ -1,10 +1,10 @@
-.. _deployment-index:
+.. _deployment-servers:
 
 .. index:: Apache, mod_wsgi, Nginx, PostgreSQL, Linux
 
 
-Deployment and Servers
-======================
+Servers
+=======
 
 .. note:: Deployment arcitectures vary widely depending on the needs and traffic of the site. The setup described below works best for us in most instances.
 
@@ -15,7 +15,7 @@ Nginx
 
 `Nginx <http://nginx.net>`__ makes for a great frontend server due to its speed, stability and low resource footprint. The typical Nginx configuration for a site looks like this:
 
-.. literalinclude:: examples/nginx.conf
+.. literalinclude:: /examples/nginx.conf
     :language: nginx
     
 .. rubric:: What Does it Do?

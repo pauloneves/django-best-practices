@@ -1,0 +1,36 @@
+.. _deployment-bootstrap:
+
+Project Bootstrapping
+=====================
+
+.. index:: virtualenv, pip
+
+Filesystem Layout
+-----------------
+
+.. note:: This document is heavily biased towards Unix-style filesystems and may require additional effort to use in other operating systems.
+
+`Virtualenv <http://pypi.python.org/pypi/virtualenv>`_ is a must for Python projects. It provides a method to isolate different Python environments. We typically host our production sites from ``/opt/projects/<site_name>`` and our development sites from ``~/projects/<site_name>``. Each individual project gets its own ``virtualenv`` that also serves as the directory for all the source files associated with the project. We use ``pip`` to populate the ``virtualenv`` with the necessary packages.
+
+The bootstrap process looks like this:
+
+.. sourcecode:: bash
+
+    cd /opt/projects
+    virtualenv mysite.com
+    cd mysite.com
+    pip install -E . -r path/to/requirements.txt
+    source bin/activate
+    
+.. tip:: For convenience, you can symlink your Django project into the root of your ``virtualenv``. The name of the symlink does not matter since your project should already live in the Python path. By giving the symlink the same name across all your projects, you can leverage some `convenient bash functions to save time <http://gist.github.com/91456>`_.
+
+.. index:: pip, requirements.txt
+
+Packaging
+---------
+
+One of the keys to successful deployment is to ensure that the software you develop on is as close as possible to the software you deploy on. `Pip <http://pip.openplans.org>`_ provides a simple repeatable method allowing you to consistently deploy Python projects across many machines. Every application that requires third-party libraries should include a `pip requirements file <http://pip.openplans.org/#requirements-files>`_ called ``requirements.txt``. Projects should aggregate the application requirements files adding any additional requirements as needed.
+
+.. rubric:: What to include in your requirements files
+
+Our rule of thumb is to include any application that is not included in your operating system's package repository. The only packages we exclude from our requirements files are ``PIL``, database drivers and packages that are uninstallable via ``pip``. These requirements are documented in the :ref:`project's README <projects-layout>`.

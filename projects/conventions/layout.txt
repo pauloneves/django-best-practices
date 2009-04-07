@@ -1,4 +1,4 @@
-.. _project-layout:
+.. _projects-layout:
 
 Suggested Project layout
 ========================
@@ -6,18 +6,9 @@ Suggested Project layout
 .. sourcecode:: python
 
      example.com/
+        README
         settings.py
         urls.py
-        local_apps/
-            custom apps written for this project (Preferably Reusable; Probably on your PYTHONPATH)
-        external_apps/
-             External reusable apps you are using on this project
-             Note: These apps can also live anywhere on your PYTHONPATH
-        projects/
-            dev_example/
-            production_example/
-            django96_example/
-                manage.py, settings, urls, etc
          docs/
             This will hold the documentation for your project
         static/
