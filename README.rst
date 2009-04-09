@@ -2,4 +2,4 @@ This is a fork of the great `django-reusable-app-docs`_  project started by `Bri
 
 .. _django-reusable-app-docs: http://github.com/ericholscher/django-reusable-app-docs/tree/master
 
-We wanted to expand on the idea and create general "best practices" documentation for Django Web development encompassing ideas that are outside the scope of the official documentation.
+We wanted to expand on the idea and create general "best practices" documentation for Django Web development encompassing ideas that are outside the scope of the official documentation. For more information, `read the project announcement <http://lincolnloop.com/blog/2009/apr/9/django-best-practices/>`_.
