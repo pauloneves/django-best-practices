@@ -10,13 +10,13 @@ Filesystem Layout
 
 .. note:: This document is heavily biased towards Unix-style filesystems and may require additional effort to use in other operating systems.
 
-`Virtualenv <http://pypi.python.org/pypi/virtualenv>`_ is a must for Python projects. It provides a method to isolate different Python environments. We typically host our production sites from ``/opt/projects/<site_name>`` and our development sites from ``~/projects/<site_name>``. Each individual project gets its own ``virtualenv`` that also serves as the directory for all the source files associated with the project. We use ``pip`` to populate the ``virtualenv`` with the necessary packages.
+`Virtualenv <http://pypi.python.org/pypi/virtualenv>`_ is a must for Python projects. It provides a method to isolate different Python environments. We typically host our production sites from ``/opt/webapps/<site_name>`` and our development sites from ``~/webapps/<site_name>``. Each individual project gets its own ``virtualenv`` that also serves as the directory for all the source files associated with the project. We use ``pip`` to populate the ``virtualenv`` with the necessary packages.
 
 The bootstrap process looks like this:
 
 .. sourcecode:: bash
 
-    cd /opt/projects
+    cd /opt/webapps
     virtualenv mysite.com
     cd mysite.com
     pip install -E . -r path/to/requirements.txt

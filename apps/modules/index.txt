@@ -1,6 +1,6 @@
-.. _apps-index:
+.. _apps-modules-index:
 
-Django Applications
+Application Modules
 ===================
 
 Contents:
@@ -10,4 +10,3 @@ Contents:
    :glob:
 
    *
-   modules/index

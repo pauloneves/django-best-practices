@@ -21,3 +21,11 @@ Nginx
 .. rubric:: What Does it Do?
 
 The first block tells Nginx where to find the server hosting our Django site. The second block redirects any request coming in on ``www.domain.com`` to ``domain.com`` so each resource has only one URL that will access it. The final block is the one that does all the work. It tells Nginx to check if a file matching the request exists in ``/var/www/domain.com``. If it does, it serves that file, if it doesn't, it proxies the request to the Django site.
+
+Apache
+------
+
+We run the Apache2 Worker MPM with `mod_wsgi <http://www.modwsgi.org>`__ in daemon mode. A typical Apache configuration for an individual site looks like this:
+
+.. linteralinclude:: /examples/apache.conf
+    :language: apache

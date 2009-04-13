@@ -10,4 +10,4 @@ Contents:
    :glob:
 
    *
-   conventions/index
+   modules/index

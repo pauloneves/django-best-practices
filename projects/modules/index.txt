@@ -1,6 +1,6 @@
-.. _projects-conventions:
+.. _projects-modules:
 
-Django Project Conventions
+Project Modules
 ==========================
 
 Contents:
