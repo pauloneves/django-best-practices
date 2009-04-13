@@ -57,12 +57,12 @@ With Apache up and running, you'll need an Apache configuration and WSGI script 
 .. literalinclude:: /examples/apache.conf
     :language: apache
     
+.. index::
+    pair: mod_wsgi; maximum-requests
+    
+.. tip:: In a perfect world, your app would never leak memory and you can leave out the ``maximum-requests`` directive. In our experience, setting this to a high number is nice to keep Apache's memory usage in check.
+    
 It links to the WSGI script within the project directory. The script is just a few lines of Python to properly setup our environment.
 
 .. literalinclude:: /examples/django.wsgi
     :language: python
-    
-.. index::
-    pair: mod_wsgi; maximum-requests
-    
-In a perfect world, your app would never leak memory and you can leave out the ``maximum-requests`` directive. In our experience, setting this to a high number is nice to keep Apache's memory usage in check.
