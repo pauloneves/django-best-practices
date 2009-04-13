@@ -12,7 +12,7 @@ Use relative paths for your directories
     import os
     DIRNAME = os.path.dirname(__file__)
 
-    MEDIA_URL = os.path.join(DIRNAME, 'static')
+    MEDIA_ROOT = os.path.join(DIRNAME, 'static')
     
 Use a ``local_settings.py`` file for machine specific settings and import it at the end of the file.
 
