@@ -27,5 +27,5 @@ Apache
 
 We run the Apache2 Worker MPM with `mod_wsgi <http://www.modwsgi.org>`__ in daemon mode. A typical Apache configuration for an individual site looks like this:
 
-.. linteralinclude:: /examples/apache.conf
+.. literalinclude:: /examples/apache.conf
     :language: apache
