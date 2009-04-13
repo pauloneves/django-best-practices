@@ -1,14 +1,13 @@
 .. _deployment-servers:
 
-.. index:: Apache, mod_wsgi, Nginx, PostgreSQL, Linux
-
-
 Servers
 =======
 
 .. note:: Deployment arcitectures vary widely depending on the needs and traffic of the site. The setup described below works best for us in most instances.
 
 We serve Django on Linux with a PostgreSQL database backend via Apache and `mod_wsgi <http://www.modwsgi.org>`__ from behind an `Nginx <http://nginx.net>`__ instance acting as a frontend proxy.
+
+.. index:: Nginx
 
 Nginx
 -----
@@ -22,10 +21,48 @@ Nginx
 
 The first block tells Nginx where to find the server hosting our Django site. The second block redirects any request coming in on ``www.domain.com`` to ``domain.com`` so each resource has only one URL that will access it. The final block is the one that does all the work. It tells Nginx to check if a file matching the request exists in ``/var/www/domain.com``. If it does, it serves that file, if it doesn't, it proxies the request to the Django site.
 
+.. index:: 
+    pair: Nginx; SSL
+
+SSL
+^^^
+
+Another benefit to running a frontend server is lightweight SSL proxying. Rather than having two Django instances running for SSL and non-SSL access, we can have Nginx act as the gatekeeper redirecting all requests back to a single non-SSL Apache instance listening on the ``localhost``. Here's what that would look like:
+
+.. literalinclude:: /examples/nginx_ssl.conf
+    :language: nginx
+    
+You can include this code at the bottom of your non-SSL configuration file.
+
+.. tip:: For SSL-aware Django sites like `Satchmo <http://www.satchmoproject.com>`_, you'll need to "trick" the site into thinking incoming requests are coming in via SSL, but this is simple enough to do with `a small addition to the WSGI script <http://gist.github.com/78416>`_ we discuss below. 
+
+.. index:: Apache
+    pair: Apache; mod_wsgi 
+    pair: Apache; Worker MPM
+    pair: Apache; Listen
+
 Apache
 ------
 
-We run the Apache2 Worker MPM with `mod_wsgi <http://www.modwsgi.org>`__ in daemon mode. A typical Apache configuration for an individual site looks like this:
+We run the Apache2 Worker MPM with `mod_wsgi <http://www.modwsgi.org>`__ in daemon mode. The default settings for the MPM Worker module should be sufficient for most environments although those with a shortage of RAM may want to look into reducing the number of servers spawned. Since Nginx will be listening for HTTP(S) requests, you'll need to bind Apache to a different port. While you're at it, you can tell it to only respond to the ``localhost``. To do so, you'll want to edit the `Listen directive <http://httpd.apache.org/docs/2.2/mod/mpm_common.html#listen>`_
+
+.. sourcecode:: apache
+
+    Listen 127.0.0.1:9000
+
+.. index:: mod_wsgi
+
+With Apache up and running, you'll need an Apache configuration and WSGI script for each site. A typical Apache configuration for an individual site looks like this:
 
 .. literalinclude:: /examples/apache.conf
     :language: apache
+    
+It links to the WSGI script within the project directory. The script is just a few lines of Python to properly setup our environment.
+
+.. literalinclude:: /examples/django.wsgi
+    :language: python
+    
+.. index::
+    pair: mod_wsgi; maximum-requests
+    
+In a perfect world, your app would never leak memory and you can leave out the ``maximum-requests`` directive. In our experience, setting this to a high number is nice to keep Apache's memory usage in check.
