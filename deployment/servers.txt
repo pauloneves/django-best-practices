@@ -61,6 +61,8 @@ With Apache up and running, you'll need an Apache configuration and WSGI script 
     pair: mod_wsgi; maximum-requests
     
 .. tip:: In a perfect world, your app would never leak memory and you can leave out the ``maximum-requests`` directive. In our experience, setting this to a high number is nice to keep Apache's memory usage in check.
+
+.. warning:: This will default to a single process with 15 threads. Django is not "officially" thread safe and some external libraries (notably a couple required for ``django.contrib.gis``) are known to not be thread safe. If needed the ``threads`` and ``processes`` arguments can be adjusted accordingly.
     
 It links to the WSGI script within the project directory. The script is just a few lines of Python to properly setup our environment.
 
