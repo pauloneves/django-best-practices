@@ -2,7 +2,7 @@ import os, sys
 import site
  
 # put virtualenv on pythonpath
-site.addsitedir('/opt/webapps/domain.com/lib/python2.5/site-packages')
+site.addsitedir('/opt/webapps/domain.com/lib/python2.6/site-packages')
  
 # redirect print statements to apache log
 sys.stdout = sys.stderr
