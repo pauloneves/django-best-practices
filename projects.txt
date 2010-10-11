@@ -1,0 +1,184 @@
+.. _projects-index:
+
+Django Projects
+===============
+
+At its core, a Django project requires nothing more than a settings file. In practice, almost every project consists of the following items:
+
+	* :ref:`projects-settings`
+	* :ref:`projects-urls`
+	* :ref:`projects-applications`
+	* :ref:`projects-templates`
+	* :ref:`projects-media`
+	* manage.py
+	
+.. _projects-settings:
+	
+Settings
+--------
+
+The settings module is the only true requirement for a Django project. Typically, it lives in the root of your project as ``settings.py``.
+
+.. _projects-settings-multiple:
+
+Handling Settings for Multiple Environments
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Django's ``startproject`` command gives you a single ``settings.py`` file. If you're new to Django, stick with the single file while you learn the ropes. As you start to deploy production sites and work with more than one developer, you'll realize the benefit in maintaining multiple settings files. For example, you probably want to run with ``DEBUG`` on locally, but not in production.
+
+There are numerous ways to handle multiple settings. Whatever solution you choose, it should meet the following requirements:
+
+	* All the important **settings files are version controlled**. If the settings change on your production site, you'll want to know who made the changes and when they were made.
+	* **All settings inherit from a common base**. If you want to add ``django-debug-toolbar`` to your ``INSTALLED_APPS``, you should be able to do it without redefining all your ``INSTALLED_APPS``.
+	
+.. seealso:: 
+
+	`Django's Split Settings Wiki <http://code.djangoproject.com/wiki/SplitSettings>`_ 
+		Examples of handling multiple settings
+
+	`Our django-startproject template <http://github.com/lincolnloop/django-startproject/tree/master/django_startproject/project_template/myproject/>`_ 
+		Our solution to the issue (see ``conf`` and ``bin/manage.py``).
+
+Handling File Paths
+^^^^^^^^^^^^^^^^^^^
+
+One function of your settings is to tell Django where to find things such as your static media and templates. Most likely they'll already live inside your project. If so, let Python generate the absolute path names for you. This makes your project portable across different environments.
+
+.. code-block:: python
+	
+	import os
+	DIRNAME = os.path.dirname(__file__)
+	# ...
+	MEDIA_ROOT = os.path.join(DIRNAME, 'static')
+
+.. _projects-urls:
+
+URLconf
+--------
+
+By default, you'll find your URLconf in the root of your project as ``urls.py``. It defines how requests should be routed for your project.
+
+Keep it Simple
+^^^^^^^^^^^^^^
+
+Your project URLconf should simply include URLconfs from your applications whenever possible. This keeps your application logic inside your application and your project simply serves as a pointer to it.
+
+.. seealso::
+
+	`Django URL dispatcher documentation <http://docs.djangoproject.com/en/dev/topics/http/urls/#including-other-urlconfs>`_
+		Including other URLconfs
+		
+Handling URLconfs for Multiple Environments
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Just like your settings module, eventually, you'll come across the need to run different URLconfs for different environments. You may want to use ``admin`` or ``databrowse`` locally, but not once deployed. Django already provides an easy way for you to do this with the `ROOT_URLCONF <http://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf>`_ setting. 
+
+Since this is basically the same scenario as having :ref:`multiple settings <projects-settings-multiple>`, we pair machine-specific settings and URLconfs together under a ``conf`` module on our projects. The end-result is something like this::
+
+	myproject
+	  ...
+	  conf
+		settings.py		<-- shared by all environments
+		urls.py			<-- shared by all environments
+	    production
+		  settings.py
+		  urls.py
+		dev
+		  settings.py
+		  urls.py
+	  ...
+	
+.. seealso:: 
+
+	`Our django-startproject template <http://github.com/lincolnloop/django-startproject/tree/master/django_startproject/project_template/myproject/>`_ 
+		An example of the ``conf`` module
+
+
+.. _projects-applications:
+
+Local Applications
+------------------
+
+Local applications are Django applications that are domain-specific to your project. They typically live inside the project module and are so closely tied to your project, they would have little use outside of it.
+
+Local vs. Third Party
+^^^^^^^^^^^^^^^^^^^^^
+
+There are hundreds [#f1]_ of open source Django applications available. Before you reinvent the wheel, make sure somebody hasn't already solved your problem by searching on Google or `Django Packages <http://djangopackages.com>`_. If you find something that will work do **not** put it your project code, instead add it to your :ref:`pip requirements <deployment-bootstrap-packaging>`.
+
+.. _tip: If you find something that *mostly* works, but just needs a little polish, consider being a good open source citizen and contributing back to the project or creating a public fork which the project owners can pull from.
+
+.. [#f1] http://djangopackages.com/categories/apps/
+
+
+The Namespace
+^^^^^^^^^^^^^
+
+How local applications should be imported into your project is a source of ongoing debate in the Django community [#f2]_. When using Django management commands, you can import your application from both your project namespace and directly without it thanks to this little ditty in ``django.core.management.setup_environ``
+
+.. code-block:: python
+
+	# Import the project module. We add the parent directory to PYTHONPATH to
+	# avoid some of the path errors new users can have.
+	sys.path.append(os.path.join(project_directory, os.pardir))
+	project_module = import_module(project_name)
+	sys.path.pop()
+
+That means either of the following lines will work when using management commands::
+
+	from myproject.myapp.models import MyModel
+	from myapp.models import MyModel
+	
+Choose one style and stick with it. The same goes for your ``INSTALLED_APPS`` setting. Mixing and matching these will get you into trouble. 
+
+.. _warning: If you choose **not** to use the project namespace, know that you may need to adjust your hosting environment to add the project module to your ``PYTHONPATH``.
+
+At Lincoln Loop, we always use the project namespace. Projects are Python modules, so we treat them as such.
+
+.. [#f2] `Discussion on django-developers mailing list regarding project namespaces in the tutorial <http://groups.google.com/group/django-developers/browse_thread/thread/9d7aaae08d6cd75d/007ba460a0852e19>`_
+
+.. _projects-templates:
+
+Templates
+---------
+
+Location
+^^^^^^^^
+
+Templates typically live in one of two places, inside the application or at the root level of a project. We recommend keeping all your templates in the project template directory unless you plan on including your application in multiple projects (or developing it as a open source "reusable" application). In that case, it can be helpful to ship with a set of sample templates in the application, allowing it to work out-of-the-box or serving as an example for other developers.
+
+Naming
+^^^^^^
+
+Django's generic views provide an excellent pattern for naming templates. Following design patterns alredady found in Django can be helpful for a couple reasons. One, you can pretty safely assume they have been well thought out and tested. Two, it makes your code immediately understandable to new developers picking up your Django code. Most generic view templates are named in the format::
+
+	[application]/[model]_[function].html
+	
+For example, creating a template to list all of the contacts (``Contact`` model) in my address book (``address_book`` application), I would use the following template::
+
+	address_book/contact_list.html
+	
+Similarly, a detail view of a contact would use::
+
+	address_book/contact_detail.html
+	
+Not every template you create will map so closely to a single model, however. In those cases, you're on your own for naming, but should still keep your templates in a directory with the same name as your application.
+
+When using inclusion tags or other other functionality to render partial templates, keep them in an ``includes`` directory inside the application template directory. For example, if I had an inclusion tag to render a contact form inside my address book application, I would create a template for it at::
+
+	address_book/includes/contact_form.html
+	
+There is no rule (anymore) that templates must have an ``html`` file extension. If you are rendering something else (plain text, JSON, XML, etc), your templates file extension should match that of the content you are generating.
+
+.. _projects-media:
+
+Static Media
+------------
+
+Static media encompasses all the non-dynamic content needed for your website, CSS, images, JavaScript, Flash, etc. It comes in two flavors, user-generated content and the media needed to render your site. Best practice dictates that *your* static media lives inside your project and your version control system. Certainly, we don't want stuff our users upload to go to the same place. As such, we always use `django-staticfiles <http://bitbucket.org/jezdez/django-staticfiles/>`_ (whose funtionality will likely land in Django proper at some point).
+
+In addition to some other slick features, ``staticfiles`` adds a new variable to your context, ``STATIC_URL``, which you can define in your settings file as the URL where your project's static files can be found. This leaves leaves ``MEDIA_URL`` and ``MEDIA_ROOT`` to manage user generated content as they were intended.
+
+.. seealso::
+
+	`On Static Media and Django <http://lincolnloop.com/blog/2008/nov/13/static-media-and-django/>`_

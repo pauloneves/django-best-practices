@@ -18,10 +18,10 @@ Table of Contents
 =================================
 
 .. toctree::
-  :maxdepth: 3
+  :maxdepth: 2
   :glob:
 
-  *
+  code
+  projects
   apps/index
-  projects/index
   deployment/index

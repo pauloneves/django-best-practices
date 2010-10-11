@@ -1,9 +1,0 @@
-.. _projects-urls:
-
-URLs
-====
-
-
-+ Placed at PROJECT/urls.py
-+ Should contain as little logic as possible, mostly just a pointer to
-  each of your apps specific URLConf's.

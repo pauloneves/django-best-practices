@@ -26,6 +26,8 @@ The bootstrap process looks like this:
 
 .. index:: pip, requirements.txt
 
+.. _deployment-bootstrap-packaging:
+
 Packaging
 ---------
 
