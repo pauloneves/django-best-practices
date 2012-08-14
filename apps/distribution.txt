@@ -4,13 +4,13 @@ How do I distribute my app?
 ===========================
 
 Django should be using the standard `Python Package Index
-<http://pypi.python.org/pypi>`__ aka Pypi or the Cheese Shop. I wrote
+<http://pypi.python.org/pypi>`__ aka PyPI or the Cheese Shop. Eric Holscher wrote
 a `tutorial <http://ericholscher.com/blog/2008/aug/6/easily-packing-
 and-distributing-django-apps-setupt/>`__ about how to easily package
-and upload your app to Pypi. All reusable apps should be uploading to
-Pypi.
+and upload your app to PyPI. All reusable apps should be uploading to
+PyPI.
 
-If you upload your app to Pypi, it is generally a good idea to prefix
+If you upload your app to PyPI, it is generally a good idea to prefix
 your project name with "django-"
 
 Also note, that when below when we refer to the default place for

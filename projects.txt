@@ -49,7 +49,7 @@ One function of your settings is to tell Django where to find things such as you
 	import os
 	DIRNAME = os.path.dirname(__file__)
 	# ...
-	MEDIA_ROOT = os.path.join(DIRNAME, 'static')
+	STATIC_ROOT = os.path.join(DIRNAME, 'static')
 
 .. _projects-urls:
 
@@ -71,7 +71,7 @@ Your project URLconf should simply include URLconfs from your applications whene
 Handling URLconfs for Multiple Environments
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Just like your settings module, eventually, you'll come across the need to run different URLconfs for different environments. You may want to use ``admin`` or ``databrowse`` locally, but not once deployed. Django already provides an easy way for you to do this with the `ROOT_URLCONF <http://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf>`_ setting. 
+Just like your settings module, eventually, you'll come across the need to run different URLconfs for different environments. You may want to use ``admin`` locally, but not once deployed. Django already provides an easy way for you to do this with the `ROOT_URLCONF <http://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf>`_ setting. 
 
 Since this is basically the same scenario as having :ref:`multiple settings <projects-settings-multiple>`, we pair machine-specific settings and URLconfs together under a ``conf`` module on our projects. The end-result is something like this::
 
@@ -114,28 +114,12 @@ There are hundreds [#f1]_ of open source Django applications available. Before y
 The Namespace
 ^^^^^^^^^^^^^
 
-How local applications should be imported into your project is a source of ongoing debate in the Django community [#f2]_. When using Django management commands, you can import your application from both your project namespace and directly without it thanks to this little ditty in ``django.core.management.setup_environ``
+How local applications should be imported into your project is a source of ongoing debate in the Django community [#f2]_. Fortunately, with the release of Django 1.4, the default ``manage.py`` no longer changes the ``PYTHONPATH`` [#f3]_, making this much less of an issue.
 
-.. code-block:: python
-
-	# Import the project module. We add the parent directory to PYTHONPATH to
-	# avoid some of the path errors new users can have.
-	sys.path.append(os.path.join(project_directory, os.pardir))
-	project_module = import_module(project_name)
-	sys.path.pop()
-
-That means either of the following lines will work when using management commands::
-
-	from myproject.myapp.models import MyModel
-	from myapp.models import MyModel
-	
-Choose one style and stick with it. The same goes for your ``INSTALLED_APPS`` setting. Mixing and matching these will get you into trouble. 
-
-.. _warning: If you choose **not** to use the project namespace, know that you may need to adjust your hosting environment to add the project module to your ``PYTHONPATH``.
-
-At Lincoln Loop, we always use the project namespace. Projects are Python modules, so we treat them as such.
+At Lincoln Loop, we put project applications inside the project namespace. This prevents polluting the global namespace and running into potential naming conflicts.
 
 .. [#f2] `Discussion on django-developers mailing list regarding project namespaces in the tutorial <http://groups.google.com/group/django-developers/browse_thread/thread/9d7aaae08d6cd75d/007ba460a0852e19>`_
+.. [#f3] `Django 1.4 manage.py changes <https://docs.djangoproject.com/en/1.4/releases/1.4/#updated-default-project-layout-and-manage-py>`_
 
 .. _projects-templates:
 
@@ -150,7 +134,12 @@ Templates typically live in one of two places, inside the application or at the 
 Naming
 ^^^^^^
 
-Django's generic views provide an excellent pattern for naming templates. Following design patterns alredady found in Django can be helpful for a couple reasons. One, you can pretty safely assume they have been well thought out and tested. Two, it makes your code immediately understandable to new developers picking up your Django code. Most generic view templates are named in the format::
+Django's generic views provide an excellent pattern for naming templates. Following design patterns already found in Django can be helpful for a couple reasons. 
+
+   1. They have been well thought out and tested. 
+   2. It makes your code immediately understandable to new developers picking up your Django code.
+
+Most generic view templates are named in the format::
 
 	[application]/[model]_[function].html
 	
@@ -175,9 +164,9 @@ There is no rule (anymore) that templates must have an ``html`` file extension. 
 Static Media
 ------------
 
-Static media encompasses all the non-dynamic content needed for your website, CSS, images, JavaScript, Flash, etc. It comes in two flavors, user-generated content and the media needed to render your site. Best practice dictates that *your* static media lives inside your project and your version control system. Certainly, we don't want stuff our users upload to go to the same place. As such, we always use `django-staticfiles <http://bitbucket.org/jezdez/django-staticfiles/>`_ (whose funtionality will likely land in Django proper at some point).
+Static media encompasses all the non-dynamic content needed for your website, CSS, images, JavaScript, Flash, etc. It comes in two flavors, user-generated content and the media needed to render your site. Best practice dictates that *your* static media lives inside your project and your version control system. Certainly, we don't want stuff our users upload to go to the same place. As such, we always use ```django.contrib.staticfiles`` <https://docs.djangoproject.com/en/1.4/ref/contrib/staticfiles/>`_.
 
-In addition to some other slick features, ``staticfiles`` adds a new variable to your context, ``STATIC_URL``, which you can define in your settings file as the URL where your project's static files can be found. This leaves leaves ``MEDIA_URL`` and ``MEDIA_ROOT`` to manage user generated content as they were intended.
+In addition to some other slick features, ``staticfiles`` adds a new variable to your context, ``STATIC_URL``, which you can define in your settings file as the URL where your project's static files can be found. This leaves leaves ``MEDIA_URL`` and ``MEDIA_ROOT`` to manage user generated content.
 
 .. seealso::
 

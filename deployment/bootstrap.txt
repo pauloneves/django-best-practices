@@ -22,7 +22,7 @@ The bootstrap process looks like this:
     pip install -E . -r path/to/requirements.txt
     source bin/activate
     
-.. tip:: For convenience, you can symlink your Django project into the root of your ``virtualenv``. The name of the symlink does not matter since your project should already live in the Python path. By giving the symlink the same name across all your projects, you can leverage some `convenient bash functions to save time <http://gist.github.com/91456>`_.
+.. tip:: For convenience, you can use `virtualenvwrapper <http://www.doughellmann.com/projects/virtualenvwrapper/>`_ which provides some helpers to make working with virtualenvs more friendly.
 
 .. index:: pip, requirements.txt
 
@@ -31,7 +31,7 @@ The bootstrap process looks like this:
 Packaging
 ---------
 
-One of the keys to successful deployment is to ensure that the software you develop on is as close as possible to the software you deploy on. `Pip <http://pip.openplans.org>`_ provides a simple repeatable method allowing you to consistently deploy Python projects across many machines. Every application that requires third-party libraries should include a `pip requirements file <http://pip.openplans.org/#requirements-files>`_ called ``requirements.txt``. Projects should aggregate the application requirements files adding any additional requirements as needed.
+One of the keys to successful deployment is to ensure that the software you develop on is as close as possible to the software you deploy on. `Pip <http://www.pip-installer.org/>`_ provides a simple repeatable method allowing you to consistently deploy Python projects across many machines. Every application that requires third-party libraries should include a `pip requirements file <http://www.pip-installer.org/en/latest/requirements.html>`_ called ``requirements.txt``. Projects should aggregate the application requirements files adding any additional requirements as needed.
 
 .. rubric:: What to include in your requirements files
 
