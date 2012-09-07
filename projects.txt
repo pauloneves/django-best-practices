@@ -166,9 +166,9 @@ There is no rule (anymore) that templates must have an ``html`` file extension. 
 Static Media
 ------------
 
-Static media encompasses all the non-dynamic content needed for your website, CSS, images, JavaScript, Flash, etc. It comes in two flavors, user-generated content and the media needed to render your site. Best practice dictates that *your* static media lives inside your project and your version control system. Certainly, we don't want stuff our users upload to go to the same place. As such, we always use ```django.contrib.staticfiles`` <https://docs.djangoproject.com/en/1.4/ref/contrib/staticfiles/>`_.
+Static media encompasses all the non-dynamic content needed for your website: CSS, images, JavaScript, Flash, etc. It comes in two flavors, user-generated content and the media needed to render your site. Best practice dictates that *your* static media lives inside your project and your version control system. Certainly, we don't want stuff our users' uploads to go to the same place. As such, we always use ```django.contrib.staticfiles`` <https://docs.djangoproject.com/en/1.4/ref/contrib/staticfiles/>`_.
 
-In addition to some other slick features, ``staticfiles`` adds a new variable to your context, ``STATIC_URL``, which you can define in your settings file as the URL where your project's static files can be found. This leaves leaves ``MEDIA_URL`` and ``MEDIA_ROOT`` to manage user generated content.
+In addition to some other slick features, ``staticfiles`` adds a new variable to your context, ``STATIC_URL``, which you can define in your settings file as the URL where your project's static files can be found. This leaves ``MEDIA_URL`` and ``MEDIA_ROOT`` to manage user generated content.
 
 .. seealso::
 
