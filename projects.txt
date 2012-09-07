@@ -30,14 +30,16 @@ There are numerous ways to handle multiple settings. Whatever solution you choos
 
 	* All the important **settings files are version controlled**. If the settings change on your production site, you'll want to know who made the changes and when they were made.
 	* **All settings inherit from a common base**. If you want to add ``django-debug-toolbar`` to your ``INSTALLED_APPS``, you should be able to do it without redefining all your ``INSTALLED_APPS``.
-	
+
+If you don't want to think about it, simply use our Django project template when starting new projects. It is ready to support multiple projects out of the gate::
+
+    django-admin.py startproject --template=https://github.com/lincolnloop/django-layout/tarball/master -e py,rst,example,gitignore my_project_name
+
+
 .. seealso:: 
 
 	`Django's Split Settings Wiki <http://code.djangoproject.com/wiki/SplitSettings>`_ 
 		Examples of handling multiple settings
-
-	`Our django-startproject template <http://github.com/lincolnloop/django-startproject/tree/master/django_startproject/project_template/myproject/>`_ 
-		Our solution to the issue (see ``conf`` and ``bin/manage.py``).
 
 Handling File Paths
 ^^^^^^^^^^^^^^^^^^^
@@ -73,25 +75,25 @@ Handling URLconfs for Multiple Environments
 
 Just like your settings module, eventually, you'll come across the need to run different URLconfs for different environments. You may want to use ``admin`` locally, but not once deployed. Django already provides an easy way for you to do this with the `ROOT_URLCONF <http://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf>`_ setting. 
 
-Since this is basically the same scenario as having :ref:`multiple settings <projects-settings-multiple>`, we pair machine-specific settings and URLconfs together under a ``conf`` module on our projects. The end-result is something like this::
+This is basically the same scenario as having :ref:`multiple settings <projects-settings-multiple>`. You can use the same solution here::
 
 	myproject
 	  ...
-	  conf
-		settings.py		<-- shared by all environments
-		urls.py			<-- shared by all environments
-	    production
-		  settings.py
-		  urls.py
-		dev
-		  settings.py
-		  urls.py
+	  settings/
+		__init__.py
+		base.py		<-- shared by all environments
+		def.py
+		production.py
+	  urls/
+	    __init__.py
+		base.py			<-- shared by all environments
+	    dev.py
+	    production.py
 	  ...
 	
 .. seealso:: 
 
-	`Our django-startproject template <http://github.com/lincolnloop/django-startproject/tree/master/django_startproject/project_template/myproject/>`_ 
-		An example of the ``conf`` module
+	`Our django-layout template <http://github.com/lincolnloop/django-layout>`_
 
 
 .. _projects-applications:
