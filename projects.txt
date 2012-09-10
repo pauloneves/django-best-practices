@@ -97,12 +97,14 @@ This is basically the same scenario as having :ref:`multiple settings <projects-
 	`Our django-layout template <http://github.com/lincolnloop/django-layout>`_
 
 
-.. _projects-applications:
+.. _projects-wsgi:
 
 WSGI File
 ---------
 
 The WSGI file tells your WSGI server what it needs to do to serve your project on the web. Django's default ``wsgi.py`` is sufficient for most applications.
+
+.. _projects-applications:
 
 Local Applications
 ------------------
