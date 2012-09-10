@@ -7,6 +7,7 @@ At its core, a Django project requires nothing more than a settings file. In pra
 
 	* :ref:`projects-settings`
 	* :ref:`projects-urls`
+	* :ref:`projects-wsgi`
 	* :ref:`projects-applications`
 	* :ref:`projects-templates`
 	* :ref:`projects-media`
@@ -97,6 +98,11 @@ This is basically the same scenario as having :ref:`multiple settings <projects-
 
 
 .. _projects-applications:
+
+WSGI File
+---------
+
+The WSGI file tells your WSGI server what it needs to do to serve your project on the web. Django's default ``wsgi.py`` is sufficient for most applications.
 
 Local Applications
 ------------------
