@@ -3,9 +3,9 @@
 Servers
 =======
 
-.. note:: Deployment arcitectures vary widely depending on the needs and traffic of the site. The setup described below works best for us in most instances.
+.. note:: Deployment arcitectures vary widely depending on the needs and traffic of the site. The setup described below is minimally configured and works well for most instances.
 
-We serve Django on Linux with a PostgreSQL database backend via Apache and `mod_wsgi <http://www.modwsgi.org>`__ from behind an `Nginx <http://nginx.net>`__ instance acting as a frontend proxy.
+We serve Django on Ubuntu Linux with a PostgreSQL database backend via `gunicorn <http://www.gunicorn.org>`__ or `uWSGI <http://projects.unbit.it/uwsgi>`__ from behind an `Nginx <http://nginx.net>`__ frontend proxy. For simplicity, we'll only be discussing Gunicorn/Nginx here.
 
 .. index:: Nginx
 
@@ -27,42 +27,33 @@ The first block tells Nginx where to find the server hosting our Django site. Th
 SSL
 ^^^
 
-Another benefit to running a frontend server is lightweight SSL proxying. Rather than having two Django instances running for SSL and non-SSL access, we can have Nginx act as the gatekeeper redirecting all requests back to a single non-SSL Apache instance listening on the ``localhost``. Here's what that would look like:
+Another benefit to running a frontend server is SSL termination. Rather than having two Django instances running for SSL and non-SSL access, we can have Nginx act as the gatekeeper redirecting all requests back to a single non-SSL WSGI instance listening on the ``localhost``. Here's what that would look like:
 
 .. literalinclude:: /examples/nginx_ssl.conf
     :language: nginx
     
 You can include this code at the bottom of your non-SSL configuration file.
 
-.. index:: Apache
-    pair: Apache; mod_wsgi 
-    pair: Apache; Worker MPM
-    pair: Apache; Listen
+.. index:: Gunicorn
 
-Apache
-------
+Gunicorn
+--------
 
-We run the Apache2 Worker MPM with `mod_wsgi <http://www.modwsgi.org>`__ in daemon mode. The default settings for the MPM Worker module should be sufficient for most environments although those with a shortage of RAM may want to look into reducing the number of servers spawned. Since Nginx will be listening for HTTP(S) requests, you'll need to bind Apache to a different port. While you're at it, you can tell it to only respond to the ``localhost``. To do so, you'll want to edit the `Listen directive <http://httpd.apache.org/docs/2.2/mod/mpm_common.html#listen>`_
+Gunicorn is a lightweight WSGI server that can scale from small deploys to high-traffic sites. You can install it via ``pip install gunicorn``. Since Nginx will be listening for HTTP(S) requests, you'll need to bind Gunicorn to a different port. While you're at it, you can tell it to only respond to the ``localhost``. A simple gunicorn process might look like this:
 
-.. sourcecode:: apache
+.. sourcecode:: bash
 
-    Listen 127.0.0.1:9000
+    $ gunicorn --workers=4 4 --bind=127.0.0.1:9000 my_project.wsgi:application
 
-.. index:: mod_wsgi
+This spawns a gunicorn process with 4 workers listening on http://127.0.0.1:9000. If your project doesn't already have a ``wsgi.py`` file, you'll want to add one. See <the Django WSGI docs `https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/#the-application-object`>__ or <django-layout `https://github.com/lincolnloop/django-layout/blob/master/project_name/wsgi.py`>__ for an example.
 
-With Apache up and running, you'll need an Apache configuration and WSGI script for each site. A typical Apache configuration for an individual site looks like this:
+Process Management
+^^^^^^^^^^^^^^^^^^
 
-.. literalinclude:: /examples/apache.conf
-    :language: apache
-    
-.. index::
-    pair: mod_wsgi; maximum-requests
-    
-.. tip:: In a perfect world, your app would never leak memory and you can leave out the ``maximum-requests`` directive. In our experience, setting this to a high number is nice to keep Apache's memory usage in check.
+You want to be sure that gunicorn is always running and that it starts up automatically after a server reboot. If you are deploying to Ubuntu, ``upstart`` is probably the easiest way to get started. Here is a sample config:
 
-.. warning:: This will default to a single process with 15 threads. Django is not "officially" thread safe and some external libraries (notably a couple required for ``django.contrib.gis``) are known to not be thread safe. If needed the ``threads`` and ``processes`` arguments can be adjusted accordingly.
-    
-It links to the WSGI script within the project directory. The script is just a few lines of Python to properly setup our environment.
+.. literalinclude:: /examples/upstart.conf
 
-.. literalinclude:: /examples/django.wsgi
-    :language: python
+Save this file to ``/etc/init/gunicorn.conf`` and run ``sudo start gunicorn``. For troubleshooting, your logs will be visible at ``/var/log/upstart/gunicorn.log``.
+
+.. note:: <Supervisor `http://supervisord.org/`>__ is a pure Python option if you don't have access to ``upstart``.
