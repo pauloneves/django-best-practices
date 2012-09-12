@@ -53,6 +53,7 @@ Process Management
 You want to be sure that gunicorn is always running and that it starts up automatically after a server reboot. If you are deploying to Ubuntu, ``upstart`` is probably the easiest way to get started. Here is a sample config:
 
 .. literalinclude:: /examples/upstart.conf
+    :language: bash
 
 Save this file to ``/etc/init/gunicorn.conf`` and run ``sudo start gunicorn``. For troubleshooting, your logs will be visible at ``/var/log/upstart/gunicorn.log``.
 
