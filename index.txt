@@ -6,13 +6,15 @@ Django Best Practices
 
 This is a living document of best practices in developing and deploying with the `Django Web framework <http://www.djangoproject.com>`__. These should not be seen as the *right* way or the *only* way to work with Django, but instead best practices we've honed after years of working with the framework.
 
-It is a fork of the great `django-reusable-app-docs project`_ started by `Brian Rosner <http://oebfare.com>`__ and `Eric Holscher <http://ericholscher.com>`_ regarding best practices for writing and maintaining reusable Django apps.
+It is a fork of the great `django-reusable-app-docs project <http://github.com/ericholscher/django-reusable-app-docs>`__ started by `Brian Rosner <http://oebfare.com>`__ and `Eric Holscher <http://ericholscher.com>`_ regarding best practices for writing and maintaining reusable Django apps.
 
-.. _django-reusable-app-docs project: http://github.com/ericholscher/django-reusable-app-docs/tree/master
+.. note:: The source code for this documentation lives on GitHub as `django-best-practices <http://github.com/lincolnloop/django-best-practices>`__ and can be built in a number of formats using `Sphinx <http://sphinx.pocoo.org>`__.
 
-.. note:: The source code for this documentation lives on GitHub as `django-best-practices`_ and can be built in a number of formats using `Sphinx <http://sphinx.pocoo.org>`__
+Feedback
+--------
 
-.. _django-best-practices: http://github.com/lincolnloop/django-best-practices/tree/master
+See a problem? Disagree with something? Want to see other topics covered? **We'd love to hear your feedback!** `Email us <mailto:info@lincolnloop.com>`__ or `file an issue <https://github.com/lincolnloop/django-best-practices/issues>`__.
+
 
 Table of Contents
 =================================
