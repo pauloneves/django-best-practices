@@ -14,5 +14,4 @@ In general, code should be clean, concise and readable. `The Zen of Python (PEP 
   <http://www.python.org/dev/peps/pep-0008/>`__ as closely as
   reasonable.
 + Follow the `Django coding style
-  <http://docs.djangoproject.com/en/dev/internals/contributing/#coding-
-  style>`__.
+  <https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/>`__.

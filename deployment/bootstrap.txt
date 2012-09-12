@@ -19,10 +19,11 @@ The bootstrap process looks like this:
     cd /opt/webapps
     virtualenv mysite.com
     cd mysite.com
-    pip install -E . -r path/to/requirements.txt
     source bin/activate
+    pip install -r path/to/requirements.txt
     
-.. tip:: For convenience, you can symlink your Django project into the root of your ``virtualenv``. The name of the symlink does not matter since your project should already live in the Python path. By giving the symlink the same name across all your projects, you can leverage some `convenient bash functions to save time <http://gist.github.com/91456>`_.
+    
+.. tip:: For convenience, you can use `virtualenvwrapper <http://www.doughellmann.com/projects/virtualenvwrapper/>`_ which provides some helpers to make working with virtualenvs more friendly.
 
 .. index:: pip, requirements.txt
 
@@ -31,8 +32,10 @@ The bootstrap process looks like this:
 Packaging
 ---------
 
-One of the keys to successful deployment is to ensure that the software you develop on is as close as possible to the software you deploy on. `Pip <http://pip.openplans.org>`_ provides a simple repeatable method allowing you to consistently deploy Python projects across many machines. Every application that requires third-party libraries should include a `pip requirements file <http://pip.openplans.org/#requirements-files>`_ called ``requirements.txt``. Projects should aggregate the application requirements files adding any additional requirements as needed.
+One of the keys to successful deployment is to ensure that the software you develop on is as close as possible to the software you deploy on. `Pip <http://www.pip-installer.org/>`_ provides a simple repeatable method allowing you to consistently deploy Python projects across many machines. Every application that requires third-party libraries should include a `pip requirements file <http://www.pip-installer.org/en/latest/requirements.html>`_ called ``requirements.txt``. Projects should aggregate the application requirements files adding any additional requirements as needed.
 
 .. rubric:: What to include in your requirements files
 
-Our rule of thumb is to include any application that is not included in your operating system's package repository. The only packages we exclude from our requirements files are ``PIL``, database drivers and packages that are uninstallable via ``pip``. These requirements are documented in the :ref:`project's README <projects-layout>`.
+In short, everything. While your operating system may provide some Python packages, nearly everything can be installed cleanly wih ``pip`` these days. By installing everything into your virtualenv, you can isolate your environment and prevent system packages from causing version conflicts.
+
+.. warning:: **Pin your dependencies!** Pip makes it easy to install from a VCS, or just grab whatever version it finds on PyPI. This also makes it easy for your deployments to have different versions of different libraries which can lead to unexpected results. Make sure you specify a version for PyPI libs or a specific commit/tag for VCS checkouts. Examples: ``django==1.4.1`` or ``-e git+https://github.com/toastdriven/django-tastypie.git@v0.9.9#egg=django-tastypie``
