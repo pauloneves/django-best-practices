@@ -57,4 +57,4 @@ You want to be sure that gunicorn is always running and that it starts up automa
 
 Save this file to ``/etc/init/gunicorn.conf`` and run ``sudo start gunicorn``. For troubleshooting, your logs will be visible at ``/var/log/upstart/gunicorn.log``.
 
-.. note:: <Supervisor `http://supervisord.org/`>__ is a pure Python option if you don't have access to ``upstart``.
+.. note:: `Supervisor <http://supervisord.org/>`__ is a pure Python option if you don't have access to ``upstart``.
