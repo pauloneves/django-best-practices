@@ -36,6 +36,6 @@ One of the keys to successful deployment is to ensure that the software you deve
 
 .. rubric:: What to include in your requirements files
 
-In short, everything. While your operating system may provide some Python packages, nearly everything can be installed cleanly wih ``pip`` these days. By installing everything into your virtualenv, you can isolate your environment and prevent system packages from causing version conflicts.
+In short, everything. While your operating system may provide some Python packages, nearly everything can be installed cleanly with ``pip`` these days. By installing everything into your virtualenv, you can isolate your environment and prevent system packages from causing version conflicts.
 
 .. warning:: **Pin your dependencies!** Pip makes it easy to install from a VCS, or just grab whatever version it finds on PyPI. This also makes it easy for your deployments to have different versions of different libraries which can lead to unexpected results. Make sure you specify a version for PyPI libs or a specific commit/tag for VCS checkouts. Examples: ``django==1.4.1`` or ``-e git+https://github.com/toastdriven/django-tastypie.git@v0.9.9#egg=django-tastypie``
