@@ -1,8 +1,0 @@
-.. _apps-context_processors:
-
-
-Context Processors
-==================
-
-
-+ Placed in APP/context_processors.py

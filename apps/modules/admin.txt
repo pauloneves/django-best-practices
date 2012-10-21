@@ -1,8 +1,0 @@
-.. _apps-admin:
-
-Admin
-=====
-
-+ Not required
-+ Placed in APP/admin.py
-+ Admin classes for a MODEL are called MODELAdmin

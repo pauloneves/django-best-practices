@@ -25,5 +25,5 @@ Table of Contents
 
   code
   projects
-  apps/index
+  applications
   deployment/index

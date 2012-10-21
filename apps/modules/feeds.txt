@@ -1,8 +1,0 @@
-.. _apps-feeds:
-
-
-Feeds
-=====
-
-
-+ Placed in APP/feeds.py

@@ -1,8 +1,0 @@
-.. _apps-middleware:
-
-Middleware
-==========
-
-
-+ Placed in APP/middleware.py
-+ As minimal as possible
