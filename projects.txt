@@ -5,13 +5,13 @@ Django Projects
 
 At its core, a Django project requires nothing more than a settings file. In practice, almost every project consists of the following items:
 
-	* :ref:`projects-settings`
-	* :ref:`projects-urls`
-	* :ref:`projects-wsgi`
-	* :ref:`projects-applications`
-	* :ref:`projects-templates`
-	* :ref:`projects-media`
-	* manage.py
+* :ref:`projects-settings`
+* :ref:`projects-urls`
+* :ref:`projects-wsgi`
+* :ref:`projects-applications`
+* :ref:`projects-templates`
+* :ref:`projects-media`
+* manage.py
 	
 .. _projects-settings:
 	
@@ -29,8 +29,8 @@ Django's ``startproject`` command gives you a single ``settings.py`` file. If yo
 
 There are numerous ways to handle multiple settings. Whatever solution you choose, it should meet the following requirements:
 
-	* All the important **settings files are version controlled**. If the settings change on your production site, you'll want to know who made the changes and when they were made.
-	* **All settings inherit from a common base**. If you want to add ``django-debug-toolbar`` to your ``INSTALLED_APPS``, you should be able to do it without redefining all your ``INSTALLED_APPS``.
+* All the important **settings files are version controlled**. If the settings change on your production site, you'll want to know who made the changes and when they were made.
+* **All settings inherit from a common base**. If you want to add ``django-debug-toolbar`` to your ``INSTALLED_APPS``, you should be able to do it without redefining all your ``INSTALLED_APPS``.
 
 If you don't want to think about it, simply use our Django project template when starting new projects. It is ready to support multiple projects out of the gate::
 
