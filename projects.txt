@@ -146,8 +146,8 @@ Naming
 
 Django's generic views provide an excellent pattern for naming templates. Following design patterns already found in Django can be helpful for a couple reasons. 
 
-   1. They have been well thought out and tested. 
-   2. It makes your code immediately understandable to new developers picking up your Django code.
+1. They have been well thought out and tested.
+2. It makes your code immediately understandable to new developers picking up your Django code.
 
 Most generic view templates are named in the format::
 
