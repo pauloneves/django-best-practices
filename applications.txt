@@ -24,7 +24,7 @@ The only requirement of a Django application is that it provides a ``models.py``
 * ``managers.py``
 * ``middleware.py``
 * ``models.py``
-* ``recievers.py``
+* ``receivers.py``
 * ``signals.py``
 * ``templates/app_name/``
 * ``templatetags/``
