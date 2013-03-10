@@ -45,7 +45,7 @@ Gunicorn is a lightweight WSGI server that can scale from small deploys to high-
 
     $ gunicorn --workers=4 4 --bind=127.0.0.1:9000 my_project.wsgi:application
 
-This spawns a gunicorn process with 4 workers listening on http://127.0.0.1:9000. If your project doesn't already have a ``wsgi.py`` file, you'll want to add one. See <the Django WSGI docs `https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/#the-application-object`>__ or <django-layout `https://github.com/lincolnloop/django-layout/blob/master/project_name/wsgi.py`>__ for an example.
+This spawns a gunicorn process with 4 workers listening on http://127.0.0.1:9000. If your project doesn't already have a ``wsgi.py`` file, you'll want to add one. See `the Django WSGI docs <https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/#the-application-object>`__ or `django-layout <https://github.com/lincolnloop/django-layout/blob/master/project_name/wsgi.py>`__ for an example.
 
 Process Management
 ^^^^^^^^^^^^^^^^^^
