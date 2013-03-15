@@ -61,6 +61,12 @@ latex:
 	@echo "Run \`make all-pdf' or \`make all-ps' in that directory to" \
 	      "run these through (pdf)latex."
 
+epub:
+	mkdir -p .build/epub .build/doctrees
+	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) .build/epub
+	@echo
+	@echo "Build finished. The e-Pub book is in .build/epub."
+
 changes:
 	mkdir -p .build/changes .build/doctrees
 	$(SPHINXBUILD) -b changes $(ALLSPHINXOPTS) .build/changes
@@ -73,3 +79,4 @@ linkcheck:
 	@echo
 	@echo "Link check complete; look for any errors in the above output " \
 	      "or in .build/linkcheck/output.txt."
+
